@@ -8,18 +8,21 @@ using Web_Shop_3.Application.Services.Interfaces;
 using Web_Shop_3.Application.Mappings;
 using Sieve.Models;
 using Web_Shop_3.Application.Helpers.PagedList;
-using Web_Shop_3.Application.DTOs.CustomerDTOs;
+using Web_Shop_3.Application.DTOs.CategoryDTOs;
+using HashidsNet;
 
 namespace Web_Shop_3.RestAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
         private readonly ILogger<CategoryController> _logger;
 
-        public CategoryController(ILogger<CategoryController> logger, ICategoryService CategoryService)
+        public CategoryController(ILogger<CategoryController> logger,
+                                  IHashids hashIds,
+                                  ICategoryService CategoryService) : base(hashIds)
         {
             _categoryService = CategoryService;
             _logger = logger;

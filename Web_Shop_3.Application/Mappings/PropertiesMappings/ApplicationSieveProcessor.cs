@@ -23,7 +23,8 @@ namespace Web_Shop_3.Application.Mappings.PropertiesMappings
         {
             return mapper
                 .ApplyConfiguration<SieveConfigurationForCustomer>()
-                .ApplyConfiguration<SieveConfigurationForCategory>();
+                .ApplyConfiguration<SieveConfigurationForCategory>()
+                .ApplyConfiguration<SieveConfigurationForProduct>();
         }
     }
 }

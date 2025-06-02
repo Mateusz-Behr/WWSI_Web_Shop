@@ -1,4 +1,5 @@
 ﻿using Web_Shop_3.Application.DTOs.CustomerDTOs;
+using Web_Shop_3.Application.DTOs.ProductDTOs;
 using Web_Shop_3.Persistence.MySQL.Model;
 using BC = BCrypt.Net.BCrypt;
 
@@ -21,6 +22,20 @@ namespace Web_Shop_3.Application.Mappings
             };
 
             return domainCustomer;
+        }
+
+        public static Product MapProduct(this AddUpdateProductDTO dto)
+        {
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+
+            return new Product
+            {
+                Name = dto.Name,
+                Description = dto.Description,
+                Price = dto.Price,
+                Sku = dto.Sku
+            };
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Web_Shop_3.Persistence.UOW
 
         public ICustomerRepository CustomerRepository { get; private set; }
         public ICategoryRepository CategoryRepository { get; private set; }
+        public IProductRepository ProductRepository { get; private set; }
 
         public UnitOfWork(WwsishopContext dbContext)
         {
@@ -22,7 +23,8 @@ namespace Web_Shop_3.Persistence.UOW
 
             CustomerRepository = new CustomerRepository(_dbContext);
             CategoryRepository = new CategoryRepository(_dbContext);
-           
+            ProductRepository = new ProductRepository(_dbContext);
+
         }
 
         public IGenericRepository<T> Repository<T>() where T : class

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web_Shop_3.Application.DTOs
+namespace Web_Shop_3.Application.DTOs.CustomerDTOs
 {
     public class GetSingleCustomerDTO
     {
-        public ulong IdCustomer { get; set; }
+        public string hashIdCustomer { get; set; } = null!;
 
         public string Name { get; set; } = null!;
 

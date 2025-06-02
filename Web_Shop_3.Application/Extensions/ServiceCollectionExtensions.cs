@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using HashidsNet;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sieve.Models;
 using Sieve.Services;
@@ -18,6 +19,7 @@ namespace Web_Shop_3.Application.Extensions
                 configuration.GetSection("Sieve").Bind(sieveOptions);
             });
 
+            services.AddSingleton<IHashids>(_ => new Hashids("Nkazmu4RgFA8Ye6nP5vQjcBJ3xCTKb79", 12));
             services
                 .AddScoped<ISieveCustomSortMethods, SieveCustomSortMethods>()
                 .AddScoped<ISieveCustomFilterMethods, SieveCustomFilterMethods>()
@@ -25,7 +27,8 @@ namespace Web_Shop_3.Application.Extensions
 
             services
                 .AddScoped(typeof(ICustomerService), typeof(CustomerService))
-                .AddScoped(typeof(ICategoryService), typeof(CategoryService));
+                .AddScoped(typeof(ICategoryService), typeof(CategoryService))
+                .AddScoped(typeof(IProductService), typeof(ProductService));
         }
     }
 }
