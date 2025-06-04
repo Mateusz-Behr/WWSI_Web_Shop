@@ -59,19 +59,19 @@ namespace Web_Shop_3.Application.Mappings
             return getSingleProductDTO;
         }
 
-        public static AddUpdateProductDTO MapToAddUpdateDTO(this Product domainProduct)
-        {
-            if (domainProduct == null)
-                throw new ArgumentNullException(nameof(domainProduct));
+        //public static AddUpdateProductDTO MapToAddUpdateDTO(this Product domainProduct)
+        //{
+        //    if (domainProduct == null)
+        //        throw new ArgumentNullException(nameof(domainProduct));
 
-            return new AddUpdateProductDTO
-            {
-                Name = domainProduct.Name,
-                Description = domainProduct.Description,
-                Price = domainProduct.Price,
-                Sku = domainProduct.Sku,
-                CategoryIds = domainProduct.IdCategories?.Select(c => (ulong)c.IdCategory).ToList()
-            };
-        }
+        //    return new AddUpdateProductDTO
+        //    {
+        //        Name = domainProduct.Name,
+        //        Description = domainProduct.Description,
+        //        Price = domainProduct.Price,
+        //        Sku = domainProduct.Sku,
+        //        CategoryIds = domainProduct.IdCategories?.Select(c => (ulong)c.IdCategory).ToList()
+        //    };
+        //}
     }
 }

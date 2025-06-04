@@ -24,17 +24,17 @@ namespace Web_Shop_3.Application.Mappings
             return domainCustomer;
         }
 
-        public static Product MapProduct(this AddUpdateProductDTO dto)
+        public static Product MapProduct(this AddUpdateProductDTO dtoProduct)
         {
-            if (dto == null)
-                throw new ArgumentNullException(nameof(dto));
+            if (dtoProduct == null)
+                throw new ArgumentNullException(nameof(dtoProduct));
 
             return new Product
             {
-                Name = dto.Name,
-                Description = dto.Description,
-                Price = dto.Price,
-                Sku = dto.Sku
+                Name = dtoProduct.Name,
+                Description = dtoProduct.Description,
+                Price = dtoProduct.Price,
+                Sku = dtoProduct.Sku
             };
         }
     }

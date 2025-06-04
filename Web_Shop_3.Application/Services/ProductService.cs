@@ -47,46 +47,22 @@ namespace Web_Shop_3.Application.Services
         {
             try
             {
-                var existingResult = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
-                if (existingResult == null)
+                var existingEntityResult = await WithoutTracking().GetByIdAsync(id);
+
+                if (!existingEntityResult.IsSuccess)
                 {
-                    return (false, null, HttpStatusCode.NotFound, "Product not found");
+                    return existingEntityResult;
                 }
 
-                if (await _unitOfWork.ProductRepository.ExistsByNameOrSkuAsync(dto.Name, dto.Sku, id))
+                if (!await _unitOfWork.ProductRepository.ExistsByNameOrSkuAsync(dto.Name, dto.Sku))
                 {
-                    return (false, null, HttpStatusCode.BadRequest, "Name or SKU already exists for another product");
+                    return (false, default(Product), HttpStatusCode.BadRequest, $"Product with name '{dto.Name}' or SKU '{dto.Sku}' already exists.");
                 }
 
-                var product = existingResult;
+                var domainEntity = dto.MapProduct();
 
-                product.Name = dto.Name;
-                product.Description = dto.Description;
-                product.Price = dto.Price;
-                product.Sku = dto.Sku;
 
-                if (dto.CategoryIds != null)
-                {
-                    if (!dto.CategoryIds.Any())
-                    {
-                        product.IdCategories = new List<Category>();
-                    }
-                    else
-                    {
-                        var categories = new List<Category>();
-                        foreach (var catId in dto.CategoryIds)
-                        {
-                            var category = await _unitOfWork.CategoryRepository.GetByIdAsync(catId);
-                            if (category == null)
-                            {
-                                return (false, null, HttpStatusCode.BadRequest, $"Category with ID {catId} does not exist");
-                            }
-                            categories.Add(category);
-                        }
-                        product.IdCategories = categories;
-                    }
-                }
-                return await UpdateAndSaveAsync(product, id);
+                return await UpdateAndSaveAsync(domainEntity, id);
             }
             catch (Exception ex)
             {

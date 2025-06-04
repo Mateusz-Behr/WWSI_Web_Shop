@@ -1,4 +1,5 @@
 ﻿
+using Web_Shop_3.Persistence.MySQL.Context;
 using Web_Shop_3.Persistence.Repositories.Interfaces;
 
 namespace Web_Shop_3.Persistence.UOW.Interfaces
@@ -8,6 +9,8 @@ namespace Web_Shop_3.Persistence.UOW.Interfaces
         ICustomerRepository CustomerRepository { get; }
         ICategoryRepository CategoryRepository { get; }
         IProductRepository ProductRepository { get; }
+
+        //WwsishopContext DbContext { get; }
 
         IGenericRepository<T> Repository<T>() where T : class;
 

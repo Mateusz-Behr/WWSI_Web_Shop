@@ -16,6 +16,7 @@ namespace Web_Shop_3.Persistence.UOW
         public ICategoryRepository CategoryRepository { get; private set; }
         public IProductRepository ProductRepository { get; private set; }
 
+        //public WwsishopContext DbContext => _dbContext;
         public UnitOfWork(WwsishopContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));

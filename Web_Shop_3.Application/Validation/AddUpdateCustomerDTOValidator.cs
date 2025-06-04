@@ -7,7 +7,7 @@ namespace Web_Shop_3.Application.Validation
     {
         public AddUpdateCustomerDTOValidator()
         {
-            RuleFor(request => request.Name).Length(3, 32).WithMessage("Pole 'Imię' należy podać w zakresie {MinLength} - {MaxLength} znaków");
+            RuleFor(request => request.Name).Length(3, 32).WithMessage("Pole 'Imię' należy podać w zakresie 3 - 32 znaków");
             RuleFor(request => request.Email).EmailAddress();
             RuleFor(request => request.Password)
                 //.NotEmpty()
